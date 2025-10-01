@@ -34,4 +34,4 @@ From the `demand` table, find the cumulative total sum for `qty` for each `produ
 SELECT *, SUM(qty) OVER (PARTITION BY product ORDER BY day ASC) AS 'CUMSUM' FROM demand
 ```
 
-In contrast to Q1, we will be using `PARTITION BY` as there is a clear grouping, and the desired solution seeks grouping under the `product` column. Bear in mind that we are looking for cumulative sum, and we can leverage `ORDER BY` as-is in this situation, since the framing boundary for such situations defaults to `RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW`, which is what we are after.
+In contrast to Q1, we will be using `PARTITION BY` as there is a clear grouping, and the desired solution seeks grouping under the `product` column. Bear in mind that we are looking for cumulative sum, and we can leverage `ORDER BY` as-is in this situation, since the framing boundary for such situations defaults to `RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW`, which is cumulative in nature.
